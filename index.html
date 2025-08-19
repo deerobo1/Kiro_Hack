@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn languages through real conversations with ConversaLearn - the modern language learning platform focused on speaking practice.">
+    <title>ConversaLearn - Learn Languages Through Real Conversations</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">ConversaLearn</div>
+                <ul class="nav-links">
+                    <li><a href="#features" class="nav-link">Features</a></li>
+                    <li><a href="#testimonials" class="nav-link">Reviews</a></li>
+                    <li><a href="#pricing" class="nav-link">Pricing</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="login.html" class="btn btn-secondary">Log In</a>
+                    <a href="signup.html" class="btn btn-primary">Start Learning</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <!-- Animated Raccoons -->
+            <div class="raccoon-animation">
+                <div class="raccoon raccoon-left">
+                    <div class="raccoon-face">🦝</div>
+                    <div class="speech-bubble left-bubble">
+                        <p id="leftRaccoonText">Bonjour!</p>
+                    </div>
+                </div>
+                <div class="raccoon raccoon-right">
+                    <div class="raccoon-face">🦝</div>
+                    <div class="speech-bubble right-bubble">
+                        <p id="rightRaccoonText">Salut!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h1 class="fade-in-up">Learn Languages Through Real Conversations</h1>
+            <p class="fade-in-up">Master any language by practicing with AI tutors and native speakers. No more boring textbooks - just natural, engaging conversations that make learning fun.</p>
+            <div class="hero-actions fade-in-up">
+                <a href="signup.html" class="btn btn-primary btn-lg">Start Learning Today</a>
+                <a href="#demo" class="btn btn-secondary btn-lg">Watch Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section">
+        <div class="container">
+            <div class="text-center">
+                <h2>Why Choose ConversaLearn?</h2>
+                <p>Experience the most natural way to learn languages through conversation-first approach</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card card">
+                    <div class="feature-icon">🗣️</div>
+                    <h3>Real-Time Conversations</h3>
+                    <p>Practice speaking with AI tutors and native speakers through voice and text chat. Get instant feedback on pronunciation and grammar.</p>
+                </div>
+                
+                <div class="feature-card card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Personalized Learning</h3>
+                    <p>Adaptive curriculum that adjusts to your pace and learning style. Focus on topics that interest you most.</p>
+                </div>
+                
+                <div class="feature-card card">
+                    <div class="feature-icon">🎮</div>
+                    <h3>Gamified Experience</h3>
+                    <p>Earn streaks, unlock achievements, and compete with friends. Make learning addictive with fun mini-games.</p>
+                </div>
+                
+                <div class="feature-card card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Learn Anywhere</h3>
+                    <p>Seamless experience across all devices. Continue your conversations on mobile, tablet, or desktop.</p>
+                </div>
+                
+                <div class="feature-card card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>25+ Languages</h3>
+                    <p>From Spanish to Mandarin, Japanese to French. Learn any language with native speaker pronunciation guides.</p>
+                </div>
+                
+                <div class="feature-card card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Progress Tracking</h3>
+                    <p>Detailed analytics on your learning journey. See your improvement in vocabulary, grammar, and fluency.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Preview -->
+    <section class="section" style="background: var(--bg-primary);">
+        <div class="container">
+            <div class="text-center">
+                <h2>See ConversaLearn in Action</h2>
+                <p>Get a glimpse of our intuitive conversation interface</p>
+            </div>
+            
+            <div class="platform-preview" style="margin-top: var(--space-2xl);">
+                <div class="card" style="max-width: 800px; margin: 0 auto; padding: var(--space-2xl);">
+                    <div class="preview-header" style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-xl); padding-bottom: var(--space-md); border-bottom: 1px solid var(--border);">
+                        <div style="width: 40px; height: 40px; background: var(--primary); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">AI</div>
+                        <div>
+                            <h4 style="margin: 0;">Spanish Conversation</h4>
+                            <p style="margin: 0; font-size: var(--font-size-sm); color: var(--text-muted);">Intermediate Level</p>
+                        </div>
+                        <div style="margin-left: auto; display: flex; gap: var(--space-sm);">
+                            <button class="btn btn-secondary" style="padding: var(--space-sm);">🎤</button>
+                            <button class="btn btn-secondary" style="padding: var(--space-sm);">🔊</button>
+                        </div>
+                    </div>
+                    
+                    <div class="conversation-preview">
+                        <div style="margin-bottom: var(--space-md);">
+                            <div style="background: var(--bg-tertiary); padding: var(--space-md); border-radius: var(--radius-md); margin-bottom: var(--space-sm);">
+                                <strong>AI Tutor:</strong> ¡Hola! ¿Cómo estuvo tu fin de semana?
+                            </div>
+                            <div style="font-size: var(--font-size-sm); color: var(--text-muted); margin-bottom: var(--space-md);">
+                                🔊 "OH-lah! KOH-moh ehs-TOO-voh too feen deh seh-MAH-nah?"
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: var(--space-md);">
+                            <div style="background: var(--primary); color: white; padding: var(--space-md); border-radius: var(--radius-md); margin-left: var(--space-2xl); margin-bottom: var(--space-sm);">
+                                <strong>You:</strong> Fue muy divertido. Fui al parque con mis amigos.
+                            </div>
+                            <div style="text-align: right; font-size: var(--font-size-sm); color: var(--accent); margin-bottom: var(--space-md);">
+                                ✓ Great pronunciation! Perfect grammar.
+                            </div>
+                        </div>
+                        
+                        <div style="background: var(--bg-tertiary); padding: var(--space-md); border-radius: var(--radius-md);">
+                            <strong>AI Tutor:</strong> ¡Qué bueno! ¿Qué hicieron en el parque?
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="section">
+        <div class="container">
+            <div class="text-center">
+                <h2>What Our Learners Say</h2>
+                <p>Join thousands of successful language learners</p>
+            </div>
+            
+            <div class="testimonials-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-xl); margin-top: var(--space-2xl);">
+                <div class="card">
+                    <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-md);">
+                        <div style="width: 50px; height: 50px; background: var(--secondary); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">M</div>
+                        <div>
+                            <h4 style="margin: 0;">Maria Rodriguez</h4>
+                            <p style="margin: 0; font-size: var(--font-size-sm); color: var(--text-muted);">Learning English</p>
+                        </div>
+                    </div>
+                    <p>"I've tried many apps, but ConversaLearn is different. The conversations feel natural and I'm actually speaking English confidently now!"</p>
+                    <div style="color: var(--accent);">⭐⭐⭐⭐⭐</div>
+                </div>
+                
+                <div class="card">
+                    <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-md);">
+                        <div style="width: 50px; height: 50px; background: var(--accent); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">J</div>
+                        <div>
+                            <h4 style="margin: 0;">James Chen</h4>
+                            <p style="margin: 0; font-size: var(--font-size-sm); color: var(--text-muted);">Learning Spanish</p>
+                        </div>
+                    </div>
+                    <p>"The AI tutor is incredibly patient and the voice recognition is spot-on. I'm having actual conversations in Spanish after just 3 months!"</p>
+                    <div style="color: var(--accent);">⭐⭐⭐⭐⭐</div>
+                </div>
+                
+                <div class="card">
+                    <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-md);">
+                        <div style="width: 50px; height: 50px; background: var(--primary); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">S</div>
+                        <div>
+                            <h4 style="margin: 0;">Sarah Johnson</h4>
+                            <p style="margin: 0; font-size: var(--font-size-sm); color: var(--text-muted);">Learning French</p>
+                        </div>
+                    </div>
+                    <p>"The gamification keeps me motivated daily. My 180-day streak and the mini-games make learning French addictive!"</p>
+                    <div style="color: var(--accent);">⭐⭐⭐⭐⭐</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section" style="background: var(--bg-primary);">
+        <div class="container text-center">
+            <h2>Ready to Start Your Language Journey?</h2>
+            <p>Join over 100,000 learners who are mastering languages through conversations</p>
+            <div style="margin-top: var(--space-xl);">
+                <a href="signup.html" class="btn btn-primary btn-lg">Start Learning Free</a>
+            </div>
+            <p style="margin-top: var(--space-md); font-size: var(--font-size-sm); color: var(--text-muted);">No credit card required • 7-day free trial</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: var(--text-primary); color: white; padding: var(--space-2xl) 0;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-xl);">
+                <div>
+                    <div class="logo" style="color: white; margin-bottom: var(--space-md);">ConversaLearn</div>
+                    <p style="color: rgba(255, 255, 255, 0.8);">Learn languages through real conversations. Master speaking skills with AI tutors and native speakers.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: var(--space-md);">Product</h4>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: var(--space-sm);"><a href="#" style="color: rgba(255, 255, 255, 0.8);">Features</a></li>
+                        <li style="margin-bottom: var(--space-sm);"><a href="#" style="color: rgba(255, 255, 255, 0.8);">Languages</a></li>
+                        <li style="margin-bottom: var(--space-sm);"><a href="#" style="color: rgba(255, 255, 255, 0.8);">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: var(--space-md);">Support</h4>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: var(--space-sm);"><a href="#" style="color: rgba(255, 255, 255, 0.8);">Help Center</a></li>
+                        <li style="margin-bottom: var(--space-sm);"><a href="#" style="color: rgba(255, 255, 255, 0.8);">Contact Us</a></li>
+                        <li style="margin-bottom: var(--space-sm);"><a href="#" style="color: rgba(255, 255, 255, 0.8);">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top: 1px solid rgba(255, 255, 255, 0.2); margin-top: var(--space-xl); padding-top: var(--space-xl); text-align: center; color: rgba(255, 255, 255, 0.6);">
+                <p>&copy; 2024 ConversaLearn. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Practice languages through real-time conversations with AI tutors and native speakers.">
+    <title>Conversation Practice - ConversaLearn</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+
+<body class="app-body">
+    <!-- App Header -->
+    <header class="app-header">
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="logo">🦝 ConversaLearn</a>
+                <div class="nav-center">
+                    <select id="languageSelect" class="language-selector">
+                        <option value="spanish">🇪🇸 Español</option>
+                        <option value="french">🇫🇷 Français</option>
+                        <option value="german">🇩🇪 Deutsch</option>
+                        <option value="italian">�🇹 Itañliano</option>
+                        <option value="japanese">� 🇵 日本語</option>
+                    </select>
+                    <div class="mode-toggle">
+                        <button id="talkingModeBtn" class="mode-btn active">🎤 Talking</button>
+                        <button id="chattingModeBtn" class="mode-btn">💬 Chatting</button>
+                    </div>
+                    <div class="streak-counter">
+                        🔥 <span id="streakCount">7</span> day streak
+                    </div>
+                </div>
+                <div class="nav-actions">
+                    <div class="badges-display">
+                        <div class="badge earned" title="Week Warrior">🏆</div>
+                        <div class="badge earned" title="Conversation Master">🎯</div>
+                        <div class="badge locked" title="Polyglot">🌟</div>
+                    </div>
+                    <a href="games.html" class="btn btn-secondary">Games</a>
+                    <div class="user-menu">
+                        <button class="btn btn-secondary user-avatar" id="userMenuBtn">U</button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Sidebar Trigger -->
+    <div class="sidebar-trigger" id="sidebarTrigger"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>📊 Progress</h3>
+            <button class="sidebar-close" id="sidebarClose">×</button>
+        </div>
+
+        <!-- Progress Overview -->
+        <div class="progress-section">
+            <div class="progress-stats">
+                <div class="stat-item">
+                    <span>Words Learned</span>
+                    <span class="stat-value primary">12/15</span>
+                </div>
+                <div class="stat-item">
+                    <span>Conversation Time</span>
+                    <span class="stat-value accent">23 min</span>
+                </div>
+                <div class="stat-item">
+                    <span>Accuracy</span>
+                    <span class="stat-value secondary">87%</span>
+                </div>
+            </div>
+            <div class="daily-goal">
+                <div class="goal-header">
+                    <span>Daily Goal</span>
+                    <span>80%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 80%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Badges & Certificates -->
+        <div class="badges-section">
+            <h4>🏆 Achievements</h4>
+            <div class="badges-grid">
+                <div class="badge-item earned">
+                    <div class="badge-icon">🔥</div>
+                    <div class="badge-name">Week Warrior</div>
+                </div>
+                <div class="badge-item earned">
+                    <div class="badge-icon">🎯</div>
+                    <div class="badge-name">Word Master</div>
+                </div>
+                <div class="badge-item locked">
+                    <div class="badge-icon">🌟</div>
+                    <div class="badge-name">Polyglot</div>
+                </div>
+                <div class="badge-item locked">
+                    <div class="badge-icon">🏅</div>
+                    <div class="badge-name">Fluent Speaker</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conversation Topics -->
+        <div class="topics-section">
+            <h4>💬 Topics</h4>
+            <div class="topic-list">
+                <button class="topic-btn active" data-topic="daily-life">
+                    <div class="topic-icon">🏠</div>
+                    <div class="topic-info">
+                        <div class="topic-name">Daily Life</div>
+                        <div class="topic-desc">Routines & hobbies</div>
+                    </div>
+                </button>
+                <button class="topic-btn" data-topic="travel">
+                    <div class="topic-icon">✈️</div>
+                    <div class="topic-info">
+                        <div class="topic-name">Travel</div>
+                        <div class="topic-desc">Culture & places</div>
+                    </div>
+                </button>
+                <button class="topic-btn" data-topic="business">
+                    <div class="topic-icon">💼</div>
+                    <div class="topic-info">
+                        <div class="topic-name">Business</div>
+                        <div class="topic-desc">Professional talk</div>
+                    </div>
+                </button>
+                <button class="topic-btn" data-topic="food">
+                    <div class="topic-icon">🍕</div>
+                    <div class="topic-info">
+                        <div class="topic-name">Food</div>
+                        <div class="topic-desc">Dining & cooking</div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main App Interface -->
+    <main class="app-main">
+        <!-- Talking Mode Interface -->
+        <div class="talking-mode" id="talkingMode">
+            <div class="talking-header">
+                <div class="tutor-avatar">
+                    <div class="avatar-circle">
+                        <div class="raccoon-face">🦝</div>
+                    </div>
+                    <div class="tutor-info">
+                        <h3 id="tutorName">Sofia</h3>
+                        <p id="tutorLanguage">Spanish Tutor</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="talking-content">
+                <!-- Voice Wave Animation -->
+                <div class="voice-wave-container">
+                    <div class="voice-waves" id="voiceWaves">
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                    </div>
+                </div>
+
+                <!-- Current Conversation Display -->
+                <div class="current-speech" id="currentSpeech">
+                    <div class="speech-bubble ai-speech">
+                        <p id="aiSpeechText">¡Hola! ¿Cómo estás hoy?</p>
+                        <div class="translation" id="aiTranslation">Hello! How are you today?</div>
+                    </div>
+                </div>
+
+                <!-- Voice Controls -->
+                <div class="voice-controls">
+                    <button class="voice-btn" id="listenBtn">
+                        <div class="btn-icon">🎤</div>
+                        <span>Tap to Speak</span>
+                    </button>
+                    <button class="voice-btn secondary" id="playbackBtn">
+                        <div class="btn-icon">🔊</div>
+                        <span>Listen Again</span>
+                    </button>
+                </div>
+
+                <!-- Live Transcription -->
+                <div class="live-transcription hidden" id="liveTranscription">
+                    <div class="transcription-header">🎤 Listening...</div>
+                    <div class="transcription-text" id="transcriptionText"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chatting Mode Interface -->
+        <div class="chatting-mode hidden" id="chattingMode">
+            <!-- Chat Header -->
+            <div class="chat-header">
+                <div class="tutor-info">
+                    <div class="tutor-avatar-small">🦝</div>
+                    <div>
+                        <h3 id="chatTutorName">Sofia - Spanish Tutor</h3>
+                        <p id="chatTutorStatus">Intermediate Level • Daily Life Topic</p>
+                    </div>
+                </div>
+                <div class="chat-controls">
+                    <button class="control-btn" id="chatMicBtn">🎤</button>
+                    <button class="control-btn" id="chatSpeakerBtn">🔊</button>
+                    <button class="control-btn" id="chatSettingsBtn">⚙️</button>
+                </div>
+            </div>
+
+            <!-- Messages Area -->
+            <div class="messages-area" id="messagesArea">
+                <!-- AI Message -->
+                <div class="message ai-message">
+                    <div class="message-avatar">🦝</div>
+                    <div class="message-content">
+                        <div class="message-bubble">
+                            <p class="original-text">
+                                <span class="word-mapping" data-translation="Hello" data-color="#FF6B6B">¡Hola!</span>
+                                <span class="word-mapping" data-translation="I am" data-color="#4ECDC4">Soy</span>
+                                <span class="word-mapping" data-translation="Sofia" data-color="#45B7D1">Sofia</span>,
+                                <span class="word-mapping" data-translation="your" data-color="#96CEB4">tu</span>
+                                <span class="word-mapping" data-translation="tutor" data-color="#FFEAA7">tutora</span>
+                                <span class="word-mapping" data-translation="of Spanish" data-color="#DDA0DD">de
+                                    español</span>.
+                                <span class="word-mapping" data-translation="How" data-color="#98D8C8">¿Cómo</span>
+                                <span class="word-mapping" data-translation="was" data-color="#F7DC6F">estuvo</span>
+                                <span class="word-mapping" data-translation="your" data-color="#BB8FCE">tu</span>
+                                <span class="word-mapping" data-translation="day" data-color="#85C1E9">día</span>
+                                <span class="word-mapping" data-translation="today" data-color="#F8C471">hoy</span>?
+                            </p>
+                        </div>
+                        <div class="translation-section">
+                            <div class="translation-label">English Translation:</div>
+                            <p class="translation-text">
+                                <span class="word-mapping" data-original="¡Hola!" data-color="#FF6B6B">Hello!</span>
+                                <span class="word-mapping" data-original="Soy" data-color="#4ECDC4">I am</span>
+                                <span class="word-mapping" data-original="Sofia" data-color="#45B7D1">Sofia</span>,
+                                <span class="word-mapping" data-original="tu" data-color="#96CEB4">your</span>
+                                <span class="word-mapping" data-original="tutora" data-color="#FFEAA7">tutor</span>
+                                <span class="word-mapping" data-original="de español" data-color="#DDA0DD">of
+                                    Spanish</span>.
+                                <span class="word-mapping" data-original="¿Cómo" data-color="#98D8C8">How</span>
+                                <span class="word-mapping" data-original="estuvo" data-color="#F7DC6F">was</span>
+                                <span class="word-mapping" data-original="tu" data-color="#BB8FCE">your</span>
+                                <span class="word-mapping" data-original="día" data-color="#85C1E9">day</span>
+                                <span class="word-mapping" data-original="hoy" data-color="#F8C471">today</span>?
+                            </p>
+                        </div>
+                        <div class="message-meta">
+                            <button class="pronunciation-btn">🔊 Listen</button>
+                            <button class="toggle-translation">👁️ Hide Translation</button>
+                            <span class="pronunciation-guide">OH-lah! soy so-FEE-ah...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Message -->
+                <div class="message user-message">
+                    <div class="message-avatar user-avatar">U</div>
+                    <div class="message-content">
+                        <div class="message-bubble user-bubble">
+                            <p>¡Hola Sofia! Mi día estuvo muy bien, gracias. Trabajé desde casa hoy.</p>
+                        </div>
+                        <div class="message-meta user-meta">
+                            <span class="accuracy-indicator">✓ Excellent pronunciation!</span>
+                            <span class="message-time">2:34 PM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Input Area -->
+            <div class="chat-input-area">
+                <div class="input-container">
+                    <div class="input-wrapper">
+                        <textarea id="messageInput" placeholder="Type your response in Spanish or use voice input..."
+                            class="message-input"></textarea>
+                        <div class="voice-indicator hidden" id="voiceIndicator">
+                            🎤 Listening...
+                        </div>
+                    </div>
+                    <div class="input-controls">
+                        <button class="input-btn voice-input-btn" id="voiceInputBtn">🎤</button>
+                        <button class="input-btn send-btn" id="sendBtn">➤</button>
+                    </div>
+                </div>
+
+                <!-- Live Transcription for Chat -->
+                <div class="transcription-area hidden" id="transcriptionArea">
+                    <div class="transcription-label">Live Transcription:</div>
+                    <div class="transcription-content" id="chatTranscriptionText"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // App state
+        let currentMode = 'talking';
+        let currentLanguage = 'spanish';
+        let isListening = false;
+        let recognition;
+        let isSidebarOpen = false;
+
+        // Language configurations
+        const languageConfig = {
+            spanish: {
+                name: 'Sofia',
+                title: 'Spanish Tutor',
+                flag: '🇪🇸',
+                code: 'es-ES',
+                placeholder: 'Type your response in Spanish...'
+            },
+            french: {
+                name: 'Marie',
+                title: 'French Tutor',
+                flag: '🇫🇷',
+                code: 'fr-FR',
+                placeholder: 'Tapez votre réponse en français...'
+            },
+            german: {
+                name: 'Hans',
+                title: 'German Tutor',
+                flag: '🇩🇪',
+                code: 'de-DE',
+                placeholder: 'Geben Sie Ihre Antwort auf Deutsch ein...'
+            },
+            italian: {
+                name: 'Marco',
+                title: 'Italian Tutor',
+                flag: '🇮🇹',
+                code: 'it-IT',
+                placeholder: 'Digita la tua risposta in italiano...'
+            },
+            japanese: {
+                name: 'Yuki',
+                title: 'Japanese Tutor',
+                flag: '🇯🇵',
+                code: 'ja-JP',
+                placeholder: '日本語で返事を入力してください...'
+            }
+        };
+
+        // App initialization
+        document.addEventListener('DOMContentLoaded', function () {
+            initializeApp();
+        });
+
+        function initializeApp() {
+            // Mode switching
+            document.getElementById('talkingModeBtn').addEventListener('click', () => switchMode('talking'));
+            document.getElementById('chattingModeBtn').addEventListener('click', () => switchMode('chatting'));
+
+            // Language selection
+            document.getElementById('languageSelect').addEventListener('change', function () {
+                currentLanguage = this.value;
+                updateLanguageInterface();
+            });
+
+            // Sidebar functionality
+            initializeSidebar();
+
+            // Topic selection
+            initializeTopics();
+
+            // Voice functionality
+            initializeVoice();
+
+            // Chat functionality
+            initializeChat();
+
+            // Initialize word mapping for existing messages
+            initializeExistingWordMapping();
+        }
+
+        function switchMode(mode) {
+            currentMode = mode;
+
+            // Update mode buttons
+            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(mode + 'ModeBtn').classList.add('active');
+
+            // Show/hide interfaces
+            const talkingInterface = document.querySelector('.talking-mode');
+            const chattingInterface = document.querySelector('.chatting-mode');
+
+            if (mode === 'talking') {
+                talkingInterface.classList.remove('hidden');
+                chattingInterface.classList.add('hidden');
+                startVoiceWaveAnimation();
+            } else {
+                talkingInterface.classList.add('hidden');
+                chattingInterface.classList.remove('hidden');
+                stopVoiceWaveAnimation();
+            }
+        }
+
+        function updateLanguageInterface() {
+            const config = languageConfig[currentLanguage];
+
+            // Update tutor info
+            document.getElementById('tutorName').textContent = config.name;
+            document.getElementById('tutorLanguage').textContent = config.title;
+            document.getElementById('chatTutorName').textContent = `${config.name} - ${config.title}`;
+
+            // Update placeholder
+            const messageInput = document.getElementById('messageInput');
+            if (messageInput) {
+                messageInput.placeholder = config.placeholder;
+            }
+        }
+
+        function initializeSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const trigger = document.getElementById('sidebarTrigger');
+            const closeBtn = document.getElementById('sidebarClose');
+
+            // Mouse enter trigger area
+            trigger.addEventListener('mouseenter', () => {
+                if (!isSidebarOpen) {
+                    openSidebar();
+                }
+            });
+
+            // Close button
+            closeBtn.addEventListener('click', closeSidebar);
+
+            // Click outside to close
+            document.addEventListener('click', (e) => {
+                if (isSidebarOpen && !sidebar.contains(e.target) && !trigger.contains(e.target)) {
+                    closeSidebar();
+                }
+            });
+        }
+
+        function openSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.add('open');
+            isSidebarOpen = true;
+        }
+
+        function closeSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.remove('open');
+            isSidebarOpen = false;
+        }
+
+        function initializeTopics() {
+            document.querySelectorAll('.topic-btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    document.querySelectorAll('.topic-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const topic = this.dataset.topic;
+                    switchTopic(topic);
+                });
+            });
+        }
+
+        function switchTopic(topic) {
+            const topicNames = {
+                'daily-life': 'Daily Life',
+                'travel': 'Travel & Culture',
+                'business': 'Business',
+                'food': 'Food & Dining'
+            };
+
+            const statusElement = document.getElementById('chatTutorStatus');
+            if (statusElement) {
+                statusElement.textContent = `Intermediate Level • ${topicNames[topic]} Topic`;
+            }
+        }
+
+        function initializeVoice() {
+            // Talking mode voice controls
+            document.getElementById('listenBtn').addEventListener('click', toggleTalkingVoice);
+            document.getElementById('playbackBtn').addEventListener('click', playLastMessage);
+
+            // Chat mode voice controls
+            const voiceInputBtn = document.getElementById('voiceInputBtn');
+            if (voiceInputBtn) {
+                voiceInputBtn.addEventListener('click', toggleChatVoice);
+            }
+        }
+
+        function toggleTalkingVoice() {
+            if (!isListening) {
+                startTalkingVoice();
+            } else {
+                stopTalkingVoice();
+            }
+        }
+
+        function startTalkingVoice() {
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                recognition = new SpeechRecognition();
+
+                const config = languageConfig[currentLanguage];
+                recognition.lang = config.code;
+                recognition.continuous = true;
+                recognition.interimResults = true;
+
+                recognition.onstart = function () {
+                    isListening = true;
+                    document.getElementById('liveTranscription').classList.remove('hidden');
+                    document.getElementById('listenBtn').classList.add('listening');
+                    startVoiceWaveAnimation();
+                };
+
+                recognition.onresult = function (event) {
+                    let transcript = '';
+                    for (let i = event.resultIndex; i < event.results.length; i++) {
+                        transcript += event.results[i][0].transcript;
+                    }
+                    document.getElementById('transcriptionText').textContent = transcript;
+                };
+
+                recognition.onend = function () {
+                    stopTalkingVoice();
+                    // Simulate AI response
+                    setTimeout(() => {
+                        generateAIResponse();
+                    }, 1000);
+                };
+
+                recognition.start();
+            }
+        }
+
+        function stopTalkingVoice() {
+            if (recognition) {
+                recognition.stop();
+            }
+            isListening = false;
+            document.getElementById('liveTranscription').classList.add('hidden');
+            document.getElementById('listenBtn').classList.remove('listening');
+            stopVoiceWaveAnimation();
+        }
+
+        function startVoiceWaveAnimation() {
+            const waves = document.querySelectorAll('.wave');
+            waves.forEach((wave, index) => {
+                wave.style.animationDelay = `${index * 0.1}s`;
+                wave.classList.add('active');
+            });
+        }
+
+        function stopVoiceWaveAnimation() {
+            const waves = document.querySelectorAll('.wave');
+            waves.forEach(wave => {
+                wave.classList.remove('active');
+            });
+        }
+
+        function generateAIResponse() {
+            const responses = [
+                "¡Excelente! Me gusta cómo pronunciaste eso.",
+                "Muy bien. ¿Puedes contarme más sobre eso?",
+                "Perfecto. Tu español está mejorando mucho.",
+                "¡Fantástico! Sigamos practicando."
+            ];
+
+            const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+            const englishTranslations = [
+                "Excellent! I like how you pronounced that.",
+                "Very good. Can you tell me more about that?",
+                "Perfect. Your Spanish is improving a lot.",
+                "Fantastic! Let's keep practicing."
+            ];
+
+            const randomTranslation = englishTranslations[Math.floor(Math.random() * englishTranslations.length)];
+
+            // Update talking mode display
+            document.getElementById('aiSpeechText').textContent = randomResponse;
+            document.getElementById('aiTranslation').textContent = randomTranslation;
+
+            // Play text-to-speech
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(randomResponse);
+                const config = languageConfig[currentLanguage];
+                utterance.lang = config.code;
+                utterance.rate = 0.8;
+                speechSynthesis.speak(utterance);
+            }
+        }
+
+        function playLastMessage() {
+            const lastMessage = document.getElementById('aiSpeechText').textContent;
+            if ('speechSynthesis' in window && lastMessage) {
+                const utterance = new SpeechSynthesisUtterance(lastMessage);
+                const config = languageConfig[currentLanguage];
+                utterance.lang = config.code;
+                utterance.rate = 0.8;
+                speechSynthesis.speak(utterance);
+            }
+        }
+
+        function initializeChat() {
+            const sendBtn = document.getElementById('sendBtn');
+            const messageInput = document.getElementById('messageInput');
+
+            if (sendBtn) {
+                sendBtn.addEventListener('click', sendMessage);
+            }
+
+            if (messageInput) {
+                messageInput.addEventListener('keypress', function (e) {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        sendMessage();
+                    }
+                });
+
+                // Auto-resize textarea
+                messageInput.addEventListener('input', function () {
+                    this.style.height = 'auto';
+                    this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+                });
+            }
+        }
+
+        function toggleChatVoice() {
+            // Similar to talking voice but for chat mode
+            console.log('Chat voice toggle');
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            if (!input) return;
+
+            const message = input.value.trim();
+            if (!message) return;
+
+            // Add user message to chat
+            addMessage(message, 'user');
+
+            // Clear input
+            input.value = '';
+            input.style.height = 'auto';
+
+            // Simulate AI response
+            setTimeout(() => {
+                const responses = [
+                    "¡Excelente! Me gusta cómo usaste esa expresión. ¿Puedes contarme más sobre eso?",
+                    "Muy bien dicho. Tu pronunciación está mejorando mucho. ¿Qué opinas de...?",
+                    "Perfecto. Esa es una respuesta muy natural. Ahora, hablemos de...",
+                    "¡Fantástico! Veo que entiendes bien el concepto. ¿Te gustaría practicar más?"
+                ];
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                addMessage(randomResponse, 'ai');
+            }, 1500);
+        }
+
+        function addMessage(text, sender) {
+            const messagesArea = document.getElementById('messagesArea');
+            const messageDiv = document.createElement('div');
+
+            const isUser = sender === 'user';
+            const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            messageDiv.className = `message ${sender}-message`;
+
+            if (isUser) {
+                messageDiv.innerHTML = `
+                    <div class="message-avatar user-avatar">U</div>
+                    <div class="message-content">
+                        <div class="message-bubble user-bubble">
+                            <p>${text}</p>
+                        </div>
+                        <div class="message-meta user-meta">
+                            <span class="accuracy-indicator">✓ Great job!</span>
+                            <span class="message-time">${time}</span>
+                        </div>
+                    </div>
+                `;
+            } else {
+                messageDiv.innerHTML = `
+                    <div class="message-avatar">🦝</div>
+                    <div class="message-content">
+                        <div class="message-bubble">
+                            <p class="original-text">${generateColorCodedText(text)}</p>
+                        </div>
+                        <div class="translation-section">
+                            <div class="translation-label">English Translation:</div>
+                            <p class="translation-text">${generateTranslation(text)}</p>
+                        </div>
+                        <div class="message-meta">
+                            <button class="pronunciation-btn">🔊 Listen</button>
+                            <button class="toggle-translation">👁️ Hide Translation</button>
+                            <span class="message-time">${time}</span>
+                        </div>
+                    </div>
+                `;
+            }
+
+            messagesArea.appendChild(messageDiv);
+            messagesArea.scrollTop = messagesArea.scrollHeight;
+
+            // Initialize word mapping for AI messages
+            if (!isUser) {
+                initializeWordMapping(messageDiv);
+            }
+        }
+
+        function initializeExistingWordMapping() {
+            document.querySelectorAll('.ai-message').forEach(message => {
+                initializeWordMapping(message);
+            });
+        }
+
+        // Translation and word mapping functionality
+        const translationDatabase = {
+            'Hola': 'Hello',
+            'Soy': 'I am',
+            'Sofia': 'Sofia',
+            'tu': 'your',
+            'tutora': 'tutor',
+            'de': 'of',
+            'español': 'Spanish',
+            'Cómo': 'How',
+            'estuvo': 'was',
+            'día': 'day',
+            'hoy': 'today',
+            'Qué': 'What/How',
+            'bueno': 'good',
+            'Te': 'You',
+            'gusta': 'like',
+            'trabajar': 'to work',
+            'desde': 'from',
+            'casa': 'home',
+            'Cuáles': 'What',
+            'son': 'are',
+            'las': 'the',
+            'ventajas': 'advantages',
+            'y': 'and',
+            'desventajas': 'disadvantages',
+            'para': 'for',
+            'ti': 'you',
+            'muy': 'very',
+            'bien': 'well',
+            'gracias': 'thank you',
+            'Trabajé': 'I worked',
+            'Mi': 'My',
+            'Excelente': 'Excellent',
+            'Me': 'I',
+            'cómo': 'how',
+            'usaste': 'you used',
+            'esa': 'that',
+            'expresión': 'expression',
+            'Puedes': 'Can you',
+            'contarme': 'tell me',
+            'más': 'more',
+            'sobre': 'about',
+            'eso': 'that'
+        };
+
+        const colorPalette = [
+            '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7',
+            '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E9',
+            '#F8C471', '#AED6F1', '#F1948A', '#82E0AA', '#F8D7DA'
+        ];
+
+        function generateColorCodedText(text) {
+            const words = text.split(/(\s+|[¡¿!?.,;:])/);
+            let colorIndex = 0;
+
+            return words.map(word => {
+                if (word.trim() && !/^[\s¡¿!?.,;:]+$/.test(word)) {
+                    const cleanWord = word.replace(/[¡¿!?.,;:]/g, '');
+                    const translation = translationDatabase[cleanWord] || translationDatabase[cleanWord.toLowerCase()] || 'Unknown';
+                    const color = colorPalette[colorIndex % colorPalette.length];
+                    colorIndex++;
+
+                    return `<span class="word-mapping" data-translation="${translation}" data-color="${color}" style="border-bottom: 2px solid ${color}; cursor: pointer; transition: all 0.2s ease;">${word}</span>`;
+                }
+                return word;
+            }).join('');
+        }
+
+        function generateTranslation(text) {
+            const words = text.split(/(\s+|[¡¿!?.,;:])/);
+            let colorIndex = 0;
+
+            return words.map(word => {
+                if (word.trim() && !/^[\s¡¿!?.,;:]+$/.test(word)) {
+                    const cleanWord = word.replace(/[¡¿!?.,;:]/g, '');
+                    const translation = translationDatabase[cleanWord] || translationDatabase[cleanWord.toLowerCase()] || word;
+                    const color = colorPalette[colorIndex % colorPalette.length];
+                    colorIndex++;
+
+                    return `<span class="word-mapping" data-original="${word}" data-color="${color}" style="border-bottom: 2px solid ${color}; cursor: pointer; transition: all 0.2s ease;">${translation}</span>`;
+                }
+                return word === '¿' ? '' : word === '?' ? '?' : word;
+            }).join('');
+        }
+
+        function initializeWordMapping(messageElement) {
+            const wordMappings = messageElement.querySelectorAll('.word-mapping');
+
+            wordMappings.forEach(word => {
+                word.addEventListener('mouseenter', function () {
+                    const color = this.dataset.color;
+                    this.style.backgroundColor = color;
+                    this.style.color = 'white';
+                    this.style.transform = 'scale(1.05)';
+                    this.style.borderRadius = '4px';
+                    this.style.padding = '2px 4px';
+
+                    // Highlight corresponding word in translation/original
+                    highlightCorrespondingWord(this, messageElement);
+                });
+
+                word.addEventListener('mouseleave', function () {
+                    this.style.backgroundColor = 'transparent';
+                    this.style.color = '';
+                    this.style.transform = 'scale(1)';
+                    this.style.borderRadius = '';
+                    this.style.padding = '';
+
+                    // Remove highlight from corresponding word
+                    removeHighlightFromCorrespondingWord(this, messageElement);
+                });
+
+                word.addEventListener('click', function () {
+                    const translation = this.dataset.translation || this.dataset.original;
+                    const original = this.textContent;
+                    showWordDetails(original, translation, this.dataset.color);
+                });
+            });
+
+            // Toggle translation functionality
+            const toggleBtn = messageElement.querySelector('.toggle-translation');
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', function () {
+                    const translationSection = messageElement.querySelector('.translation-section');
+                    if (translationSection.style.display === 'none') {
+                        translationSection.style.display = 'block';
+                        this.innerHTML = '👁️ Hide Translation';
+                    } else {
+                        translationSection.style.display = 'none';
+                        this.innerHTML = '👁️ Show Translation';
+                    }
+                });
+            }
+
+            // Pronunciation button
+            const pronunciationBtn = messageElement.querySelector('.pronunciation-btn');
+            if (pronunciationBtn) {
+                pronunciationBtn.addEventListener('click', function () {
+                    const text = messageElement.querySelector('.original-text').textContent;
+                    if ('speechSynthesis' in window) {
+                        const utterance = new SpeechSynthesisUtterance(text);
+                        const config = languageConfig[currentLanguage];
+                        utterance.lang = config.code;
+                        utterance.rate = 0.8;
+                        speechSynthesis.speak(utterance);
+                    }
+                });
+            }
+        }
+
+        function highlightCorrespondingWord(clickedWord, messageElement) {
+            const isOriginal = clickedWord.dataset.translation;
+            const targetText = isOriginal ? clickedWord.dataset.translation : clickedWord.dataset.original;
+
+            const correspondingWords = messageElement.querySelectorAll('.word-mapping');
+            correspondingWords.forEach(word => {
+                const wordText = isOriginal ? word.dataset.original : word.dataset.translation;
+                if (wordText === targetText || word.textContent.trim() === targetText) {
+                    const color = clickedWord.dataset.color;
+                    word.style.backgroundColor = color;
+                    word.style.color = 'white';
+                    word.style.transform = 'scale(1.05)';
+                    word.style.borderRadius = '4px';
+                    word.style.padding = '2px 4px';
+                }
+            });
+        }
+
+        function removeHighlightFromCorrespondingWord(clickedWord, messageElement) {
+            const correspondingWords = messageElement.querySelectorAll('.word-mapping');
+            correspondingWords.forEach(word => {
+                if (word !== clickedWord) {
+                    word.style.backgroundColor = 'transparent';
+                    word.style.color = '';
+                    word.style.transform = 'scale(1)';
+                    word.style.borderRadius = '';
+                    word.style.padding = '';
+                }
+            });
+        }
+
+        function showWordDetails(original, translation, color) {
+            // Create a small popup with word details
+            const popup = document.createElement('div');
+            popup.className = 'word-popup';
+            popup.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: var(--bg-primary);
+                border: 2px solid ${color};
+                border-radius: var(--radius-lg);
+                padding: var(--space-lg);
+                box-shadow: var(--shadow-lg);
+                z-index: 1000;
+                max-width: 300px;
+                text-align: center;
+            `;
+
+            popup.innerHTML = `
+                <div style="font-size: var(--font-size-xl); font-weight: 600; margin-bottom: var(--space-md); color: ${color};">
+                    ${original}
+                </div>
+                <div style="font-size: var(--font-size-lg); margin-bottom: var(--space-md); color: var(--text-secondary);">
+                    ${translation}
+                </div>
+                <button onclick="this.parentElement.remove()" style="background: ${color}; color: white; border: none; padding: var(--space-sm) var(--space-md); border-radius: var(--radius-md); cursor: pointer;">
+                    Got it!
+                </button>
+            `;
+
+            document.body.appendChild(popup);
+
+            // Auto-remove after 3 seconds
+            setTimeout(() => {
+                if (popup.parentElement) {
+                    popup.remove();
+                }
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>
